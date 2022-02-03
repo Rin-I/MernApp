@@ -1,0 +1,7 @@
+.MuiSlider-root {
+  flex-direction: row;
+}
+
+.MuiPaper-root {
+  flex-direction: row !important;
+}
