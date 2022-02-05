@@ -27,6 +27,14 @@ export const incrementAsync = createAsyncThunk(
     return response.data
   }
 )
+export const getPosts = createAsyncThunk("FETCH_ALL", async () => {
+  try {
+    const { data } = await api.fetchPosts()
+    return data
+  } catch (error: any) {
+    console.log(error.message)
+  }
+})
 
 export const postreducer = createSlice({
   name: "counter",
@@ -40,14 +48,16 @@ export const postreducer = createSlice({
       // immutable state based off those changes
       return posts
     },
-    getPosts: async () => {
-      try {
-        const { data } = await api.fetchPosts()
-        return data
-      } catch (error: any) {
-        console.log(error.message)
-      }
-    },
+    // getPosts: async () => {
+    //   console.log("aa")
+
+    //   // try {
+    //   //   const { data } = await api.fetchPosts()
+    //   //   return data
+    //   // } catch (error: any) {
+    //   //   console.log(error.message)
+    //   // }
+    // },
     // decrement: (state) => {
     //   state.value -= 1
     // },
@@ -58,7 +68,7 @@ export const postreducer = createSlice({
   },
 })
 
-export const { increment, getPosts } = postreducer.actions
+export const { increment } = postreducer.actions
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

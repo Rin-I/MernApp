@@ -6,11 +6,10 @@ import postRoutes from "./routes/posts"
 
 const app: Express = express()
 
-app.use("/posts", postRoutes)
-
 app.use(express.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
 
+app.use("/posts", postRoutes)
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.97ocy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 const PORT = process.env.PORT || 5000
 

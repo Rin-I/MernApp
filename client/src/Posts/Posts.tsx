@@ -1,6 +1,7 @@
 import React from "react"
 import Post from "./Post/Post"
 import { makeStyles } from "@mui/styles"
+import { useAppSelector } from "../app/hooks"
 
 const useStyles = makeStyles({
   root: {
@@ -26,6 +27,9 @@ const useStyles = makeStyles({
 
 const Posts: React.FC = () => {
   const classes = useStyles()
+  const posts = useAppSelector((store) => store.posts)
+
+  console.log(posts)
 
   return (
     <div>
