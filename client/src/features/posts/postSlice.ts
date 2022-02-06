@@ -21,11 +21,14 @@ export const FetchAllPosts = createAsyncThunk("posts/FetchAll", async () => {
     console.log(error.message)
   }
 })
+
 export const CreatePost = createAsyncThunk(
   "posts/Create",
   async (post: POSTDATA) => {
     try {
+      console.log("post", post)
       const { data } = await api.createPosts(post)
+      console.log(data)
       return data
     } catch (error: any) {
       console.log(error.message)

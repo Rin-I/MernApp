@@ -18,6 +18,8 @@ export const createPost = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+  console.log("req.body", req.body)
+
   const post = req.body as Pick<
     POST,
     | "title"
@@ -30,6 +32,7 @@ export const createPost = async (
   >
 
   const newPost = new PostMessage(post)
+  console.log(newPost)
 
   try {
     await newPost.save()
