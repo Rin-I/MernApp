@@ -1,7 +1,9 @@
 import React from "react"
 import Post from "./Post/Post"
+import { Grid, CircularProgress } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import { useAppSelector } from "../app/hooks"
+import "../Global.css"
 
 const useStyles = makeStyles({
   root: {
@@ -23,19 +25,31 @@ const useStyles = makeStyles({
   actionDiv: {
     textAlign: "center",
   },
+  container: {
+    margin: "0 auto",
+  },
 })
 
-const Posts: React.FC = () => {
+type PROPS = {
+  setCurrentId: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Posts: React.FC<PROPS> = ({ setCurrentId }) => {
   const classes = useStyles()
   const posts = useAppSelector((store) => store.posts)
 
   console.log(posts)
 
-  return (
-    <div>
-      POSTS
-      <Post />
-    </div>
+  return !posts.length ? (
+    <CircularProgress />
+  ) : (
+    <Grid className={classes.container} container spacing={3}>
+      {posts.map((post) => (
+        <Grid key={post._id} item xs={12} sm={6}>
+          <Post post={post} setCurrentId={setCurrentId} />
+        </Grid>
+      ))}
+    </Grid>
   )
 }
 

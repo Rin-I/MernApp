@@ -1,9 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { TextField, Button, Typography, Paper } from "@mui/material"
 import { makeStyles } from "@mui/styles"
 import { POSTDATA } from "../Types"
 import { useAppDispatch } from "../app/hooks"
-import { CreatePost } from "../features/posts/postSlice"
+import { useAppSelector } from "../app/hooks"
+import { CreatePost, UpdatePost } from "../features/posts/postSlice"
+import "../Global.css"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +30,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Form: React.FC = () => {
+type PROPS = {
+  currentId: string
+  setCurrentId: React.Dispatch<React.SetStateAction<string>>
+}
+
+const Form: React.FC<PROPS> = ({ currentId, setCurrentId }) => {
   const classes = useStyles()
   const dispatch = useAppDispatch()
+  const post = useAppSelector((store) =>
+    currentId ? store.posts.find((p) => p._id === currentId) : null
+  )
   const [postData, setPostData] = useState<POSTDATA>({
     creator: "",
     title: "",
@@ -39,14 +49,31 @@ const Form: React.FC = () => {
     selectedFile: "",
   })
 
+  useEffect(() => {
+    if (post) setPostData(post)
+  }, [post])
+
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    dispatch(CreatePost(postData))
-    console.log(postData)
+
+    if (currentId !== "") {
+      const updatepostData = { id: currentId, post: postData }
+      dispatch(UpdatePost(updatepostData))
+    } else {
+      dispatch(CreatePost(postData))
+    }
+    clear()
   }
 
   const clear = () => {
-    console.log("clear")
+    setCurrentId("")
+    setPostData({
+      creator: "",
+      title: "",
+      message: "",
+      tags: "",
+      selectedFile: "",
+    })
   }
 
   return (
@@ -57,7 +84,9 @@ const Form: React.FC = () => {
         className={classes.form}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">Createring a Memory</Typography>
+        <Typography variant="h6">
+          家計簿を{currentId ? "編集する" : "追加する"}
+        </Typography>
         <TextField
           name="creator"
           variant="outlined"

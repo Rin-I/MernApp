@@ -1,0 +1,15 @@
+.MuiOutlinedInput-root {
+  margin: 5px 0;
+}
+
+.MuiGrid-root {
+  margin: 0px;
+  margin-top: 0px !important;
+  /* max-width: 66.6666%; */
+}
+
+.MuiGrid-root > .MuiGrid-item {
+  padding: 0 12px;
+  padding-left: 0 !important;
+  padding-top: 12px !important;
+}

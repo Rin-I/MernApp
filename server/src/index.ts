@@ -1,12 +1,14 @@
 import express, { Express } from "express"
 import mongoose, { ConnectOptions } from "mongoose"
+import bodyParser from "body-parser"
 import cors from "cors"
-
 import postRoutes from "./routes/posts"
 
 const app: Express = express()
 
+app.use(bodyParser.json({ limit: "30mb" }))
 app.use(express.urlencoded({ limit: "30mb", extended: true }))
+
 app.use(cors())
 
 app.use("/posts", postRoutes)
@@ -17,7 +19,6 @@ mongoose
   .connect(CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useFindAndModify: false,
   } as ConnectOptions)
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port : ${PORT}`))
