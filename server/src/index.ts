@@ -3,8 +3,10 @@ import mongoose, { ConnectOptions } from "mongoose"
 import bodyParser from "body-parser"
 import cors from "cors"
 import postRoutes from "./routes/posts"
+import dotenv from "dotenv"
 
 const app: Express = express()
+dotenv.config()
 
 app.use(bodyParser.json({ limit: "30mb" }))
 app.use(express.urlencoded({ limit: "30mb", extended: true }))
@@ -28,4 +30,4 @@ mongoose
   .then(() =>
     app.listen(PORT, () => console.log(`Server running on port : ${PORT}`))
   )
-  .catch((error) => console.log(error.message))
+  .catch((error) => console.log("Error is ", error.message))

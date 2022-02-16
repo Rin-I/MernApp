@@ -41,7 +41,7 @@ const App: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <Typography className={classes.caution} variant="h3" align="center">
-        ※まだ制作途中です
+        ※制作途中です
       </Typography>
 
       <AppBar className={classes.appBar} position="static" color="inherit">
