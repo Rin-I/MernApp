@@ -27,6 +27,8 @@ export const createPost = async (
     | "createdAt"
   >
 
+  console.log(creator, title)
+
   const newPost = new PostMessage({
     title,
     message,

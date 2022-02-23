@@ -30,7 +30,11 @@ export const CreatePost = createAsyncThunk(
   "posts/Create",
   async (post: POSTDATA) => {
     try {
+      console.log(post)
+
       const { data } = await api.createPosts(post)
+      console.log(data)
+
       return data
     } catch (error: any) {
       console.log(error.message)
