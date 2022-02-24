@@ -39,30 +39,28 @@ const App: React.FC = () => {
   }, [currentId, dispatch])
 
   return (
-    <Container maxWidth="lg">
-      <Typography className={classes.caution} variant="h3" align="center">
-        ※制作途中です
-      </Typography>
+    <div className="p-5">
+      <p className="text-center text-lg">※制作途中です</p>
 
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2" align="center">
+      <header className="bg-white p-4 flex justify-center rounded-full w-3/4 mx-auto my-4">
+        <h1 className="text-center text-5xl text-blue-600 font-bold">
           僕の家計簿アプリ
-        </Typography>
-        <img className={classes.image} src={icon} alt="memories" height="60" />
-      </AppBar>
+        </h1>
+        <img className="h-12" src={icon} alt="memories" height="60" />
+      </header>
       <Grow in>
-        <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={7} md={7}>
+        <div className="p-5">
+          <div className="grid grid-cols-2">
+            <div className="col-start-1 col-end-3">
               <Posts setCurrentId={setCurrentId} />
-            </Grid>
-            <Grid item xs={12} sm={4} md={5}>
+            </div>
+            <div className="">
               <Form currentId={currentId} setCurrentId={setCurrentId} />
-            </Grid>
-          </Grid>
-        </Container>
+            </div>
+          </div>
+        </div>
       </Grow>
-    </Container>
+    </div>
   )
 }
 
