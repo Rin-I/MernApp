@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const postSchema = new mongoose_1.Schema({
+    creator: String,
     title: String,
     message: String,
-    creater: String,
     tags: String,
     selectedFile: String,
     likeCount: {

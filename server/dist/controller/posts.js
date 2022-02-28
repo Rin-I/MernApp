@@ -27,6 +27,7 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getPosts = getPosts;
 const createPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title, message, selectedFile, creator, tags } = req.body;
+    console.log(creator, title);
     const newPost = new postMessage_1.default({
         title,
         message,
