@@ -16,7 +16,7 @@ const Posts: React.FC<PROPS> = ({ setCurrentId }) => {
   ) : (
     <div className="flex flex-wrap mx-2">
       {posts.map((post) => (
-        <div className="w-1/2 px-2">
+        <div key={post._id} className="w-1/2 px-2">
           <Post post={post} setCurrentId={setCurrentId} />
         </div>
       ))}

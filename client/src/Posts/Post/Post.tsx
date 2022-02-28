@@ -27,7 +27,7 @@ const Post: React.FC<POST> = ({ post, setCurrentId }) => {
             <span className="text-3xl">{post.title}:</span>¥{post.message}
           </p>
           <a
-            href="javascript:void(0)"
+            href="#"
             className="
              inline-block
              py-2
@@ -40,7 +40,7 @@ const Post: React.FC<POST> = ({ post, setCurrentId }) => {
              transition
              "
           >
-            詳細を見る
+            詳細 ※未実装
           </a>
           <button
             className="mx-2 my-2 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600"
@@ -70,48 +70,6 @@ const Post: React.FC<POST> = ({ post, setCurrentId }) => {
         </div>
       </div>
     </div>
-
-    // <Card classNameName={classNamees.card}>
-    //   <div classNameName={classNamees.overlay}>
-    //     <Typography variant="h6">{post.creator}</Typography>
-    //     {/* 日付後ほど追加 */}
-    //     {/* <Typography variant="body2">
-    //       {moment(post.createdAt).fromNow()}
-    //     </Typography> */}
-    //   </div>
-    //   <div classNameName={classNamees.overlay2}>
-    //     <Button
-    //       style={{ color: "black" }}
-    //       size="large"
-    //       onClick={() => setCurrentId(post._id)}
-    //     >
-    //       <MoreHorizIcon fontSize="inherit" />
-    //     </Button>
-    //   </div>
-    //   <div classNameName={classNamees.details}>
-    //     <Typography variant="body2" color="textSecondary">
-    //       {post.tags}
-    //     </Typography>
-    //   </div>
-    //   <CardContent>
-    //     <Typography classNameName={classNamees.title} variant="h5" gutterBottom>
-    //       {post.title}
-    //     </Typography>
-    //     <Typography classNameName={classNamees.title} variant="h5" gutterBottom>
-    //       {post.message}
-    //     </Typography>
-    //   </CardContent>
-    //   <CardActions classNameName={classNamees.cardActions}>
-    //     <Button
-    //       size="small"
-    //       color="primary"
-    //       onClick={() => dispatch(DeletePost(post._id))}
-    //     >
-    //       <DeleteOutlineOutlinedIcon fontSize="small" />
-    //       Delete
-    //     </Button>
-    //   </CardActions>
-    // </Card>
   )
 }
 

@@ -16,7 +16,9 @@ const App: React.FC = () => {
 
   return (
     <div className="p-5">
-      <p className="text-center text-lg">※制作途中です</p>
+      <p className="text-center text-lg">
+        ※制作途中です。ログイン機能、詳細ページ、コメント機能を追加予定
+      </p>
 
       <header className="bg-white p-4 flex justify-center rounded-full w-3/4 mx-auto my-4">
         <h1 className="text-center text-5xl text-blue-600 font-bold">
