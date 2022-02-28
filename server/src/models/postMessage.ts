@@ -2,9 +2,9 @@ import { POST } from "../types/post"
 import { model, Schema } from "mongoose"
 
 const postSchema: Schema = new Schema({
+  creator: String,
   title: String,
   message: String,
-  creater: String,
   tags: String,
   selectedFile: String,
   likeCount: {

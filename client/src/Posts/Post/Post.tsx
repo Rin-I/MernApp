@@ -1,72 +1,8 @@
 import React from "react"
-import { makeStyles } from "@mui/styles"
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-} from "@mui/material"
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined"
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz"
 import moment from "moment"
 import * as Types from "../../Types"
 import { useAppDispatch } from "../../app/hooks"
-import { MoreHoriz } from "@mui/icons-material"
-import "../../Global.css"
 import { DeletePost } from "../../features/posts/postSlice"
-
-const useStyles = makeStyles({
-  media: {
-    height: 0,
-    paddingTop: "56.25%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    backgroundBlendMode: "darken",
-  },
-  border: {
-    border: "solid",
-  },
-  fullHeightCard: {
-    height: "100%",
-  },
-  card: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    borderRadius: "15px !important",
-    height: 150,
-    position: "relative",
-  },
-  overlay: {
-    position: "absolute",
-    top: "20px",
-    left: "20px",
-    color: "#fff",
-  },
-  overlay2: {
-    position: "absolute",
-    top: "20px",
-    right: "20px",
-    color: "white",
-  },
-  grid: {
-    display: "flex",
-  },
-  details: {
-    display: "flex",
-    justifyContent: "space-between",
-    margin: "20px",
-  },
-  title: {
-    padding: "0 16px",
-  },
-  cardActions: {
-    padding: "0 16px 8px 16px",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-})
 
 type POST = {
   post: Types.POSTFETCHDATA
@@ -74,51 +10,66 @@ type POST = {
 }
 
 const Post: React.FC<POST> = ({ post, setCurrentId }) => {
-  const classes = useStyles()
   const dispatch = useAppDispatch()
 
   return (
-    <Card className={classes.card}>
-      <div className={classes.overlay}>
-        <Typography variant="h6">{post.creator}</Typography>
-        {/* 日付後ほど追加 */}
-        {/* <Typography variant="body2">
-          {moment(post.createdAt).fromNow()}
-        </Typography> */}
+    <div className="w-full">
+      <div className="bg-white rounded-lg overflow-hidden mb-10">
+        <div className="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
+          <h3 className="text-left font-bold text-2xl">
+            {post.creator}
+            <span className="ml-5">#{post.tags}</span>
+            <span className="ml-6 text-base text-gray-700">
+              {moment(post.createdAt).fromNow()}
+            </span>
+          </h3>
+          <p className="text-5xl text-body-color leading-relaxed mb-7">
+            <span className="text-3xl">{post.title}:</span>¥{post.message}
+          </p>
+          <a
+            href="#"
+            className="
+             inline-block
+             py-2
+             px-7
+             border border-[#E5E7EB]
+             rounded-full
+             text-base text-body-color
+             font-medium
+             hover:border-primary hover:bg-primary hover:text-white
+             transition
+             "
+          >
+            詳細 ※未実装
+          </a>
+          <button
+            className="mx-2 my-2 bg-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-indigo-600"
+            onClick={() => setCurrentId(post._id)}
+          >
+            編集する
+          </button>
+          <div
+            className="flex justify-end"
+            onClick={() => dispatch(DeletePost(post._id))}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
-      <div className={classes.overlay2}>
-        <Button
-          style={{ color: "black" }}
-          size="large"
-          onClick={() => setCurrentId(post._id)}
-        >
-          <MoreHorizIcon fontSize="inherit" />
-        </Button>
-      </div>
-      <div className={classes.details}>
-        <Typography variant="body2" color="textSecondary">
-          {post.tags}
-        </Typography>
-      </div>
-      <CardContent>
-        <Typography className={classes.title} variant="h5" gutterBottom>
-          {post.title}
-        </Typography>
-        <Typography className={classes.title} variant="h5" gutterBottom>
-          {post.message}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.cardActions}>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => dispatch(DeletePost(post._id))}
-        >
-          <DeleteOutlineOutlinedIcon fontSize="small" />
-          Delete
-        </Button>
-      </CardActions>
-    </Card>
+    </div>
   )
 }
 
